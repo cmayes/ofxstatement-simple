@@ -55,10 +55,6 @@ def process_balances(stmt):
     return True
 
 
-def convert_debit(amount, book_type):
-    if book_type is not None and 'debit' == book_type.lower():
-        return -amount
-    return amount
 
 
 class SimpleBankJsonParser(StatementParser):
@@ -89,6 +85,11 @@ class SimpleBankJsonParser(StatementParser):
             return self.statement
 
     def parse_record(self, line):
+        """Extracts the transaction data from the given line parsed from the JSON file.
+
+        :param line: A transaction line from the parsed JSON file.
+        :return: A new StatementLine filled by the given line's data.
+        """
         amount = to_float(line['amounts']['amount'])
         if self.statement.filter_zeros and is_zero(amount):
             return None
@@ -123,3 +124,8 @@ def ts_to_datetime(epoch):
     return datetime.fromtimestamp(epoch/1000)
 
 
+def convert_debit(amount, book_type):
+    """Converts the amount to negative if the book_type is 'debit'."""
+    if book_type is not None and 'debit' == book_type.lower():
+        return -amount
+    return amount
