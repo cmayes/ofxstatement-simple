@@ -1,3 +1,4 @@
+I have retired this plugin as Simple the bank no longer exists.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Simple plugin for ofxstatement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
